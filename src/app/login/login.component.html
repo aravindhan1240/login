@@ -1,0 +1,47 @@
+<!--
+<div class="login-container">
+  <h2>Login</h2>
+  <form (ngSubmit)="submitForm()" #loginForm="ngForm">
+    <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required>
+    <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+    <p class="error" *ngIf="loginForm.submitted && (email.length === 0 || password.length === 0)">
+      Please fill out both fields.
+    </p>
+    <button class="submit-btn" type="submit">Submit</button>
+  </form>
+</div>
+
+ -->
+ <div class="login-container">
+  <h2>Login</h2>
+  <form #loginForm="ngForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+        required
+        #emailInput="ngModel"
+        [ngClass]="{'highlight-red': loginForm.submitted && emailInput.invalid}"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        required
+        #passwordInput="ngModel"
+        [ngClass]="{'highlight-red': loginForm.submitted && passwordInput.invalid}"
+      />
+      <p class="error-message" *ngIf="showErrorMessage">Please fill out all fields.</p>
+    </div>
+    <button class="submit-btn" type="submit">Submit</button>
+  </form>
+
+</div>
+
